@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { solve } from './solver';
 
 function App() {
+  const [res, setRes] = useState();
+
+  // testing
+  let guesses = [
+    'adieu',
+    'polys',
+    'fight',
+    'wreck'
+  ]
+  let colors = [
+    'ywyww',
+    'wwwww',
+    'wgwwy',
+    'wwwww'
+  ]
+  // end test
+
+  useEffect(() => {
+    const fetchSolutions = async() => {
+      await solve(guesses, colors)
+      .then(data => {
+        return JSON.parse(data);
+      })
+      .then(json => {
+        setRes(json);
+        console.log(json);
+      })
+    }
+    fetchSolutions();
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <h1>{res ? res[0] : 'none'}</h1>
   );
 }
 
