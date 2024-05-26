@@ -3,7 +3,7 @@ import './App.css';
 import { solve } from './solver';
 
 function App() {
-  const [res, setRes] = useState();
+  const [res, setRes] = useState([]);
 
   // testing
   let guesses = [
@@ -13,10 +13,10 @@ function App() {
     'wreck'
   ]
   let colors = [
-    'ywyww',
+    'wwwgw',
+    'wwyww',
     'wwwww',
-    'wgwwy',
-    'wwwww'
+    'wwyww'
   ]
   // end test
 
@@ -34,7 +34,7 @@ function App() {
     fetchSolutions();
   }, [])
   return (
-    <h1>{res ? res[0] : 'none'}</h1>
+    <h1>{res ? res.join(', ') : 'none'}</h1>
   );
 }
 

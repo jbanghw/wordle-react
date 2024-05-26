@@ -24,7 +24,7 @@ export async function solve(guesses: string[], guessesColors: string[]) {
         letters[j] = currLetter;
         letters[5] += currLetter;
       } else if (guessesColors[i][j] === 'y') {  // semi-correct guess
-        letters[j].replace(currLetter, '');
+        letters[j] = letters[j].replace(currLetter, '');
         letters[5] += currLetter;
       } else if (guessesColors[i][j] === 'w') {  // wrong guess
         // a square could be gray while still being in the result word.
@@ -40,10 +40,10 @@ export async function solve(guesses: string[], guessesColors: string[]) {
         // remove currLetter from all positions if the letter doesn't exist in the result word at all
         if (containsCount === 0) {
           for (let k = 0; k < 5; k++) {
-            letters[k].replace(currLetter, '');
+            letters[k] = letters[k].replace(currLetter, '');
           }
         } else {
-          letters[j].replace(currLetter, '');
+          letters[j] = letters[j].replace(currLetter, '');
         }
       }
     }
