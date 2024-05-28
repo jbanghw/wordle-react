@@ -1,7 +1,7 @@
 import { allWords } from "./words";
 
 export async function solve(guesses: string[], guessesColors: string[]) {
-  // setup possible letters for each index of the words
+  // possible letters for each index of the solution word + must-include letters
   const letters: string[] = [
     'abcdefghijklmnopqrstuvwxyz',
     'abcdefghijklmnopqrstuvwxyz',
@@ -10,6 +10,7 @@ export async function solve(guesses: string[], guessesColors: string[]) {
     'abcdefghijklmnopqrstuvwxyz',
     ''
   ];
+  // maximum occurence of each letter in the alphabet (5 by default)
   const maxLetterCount: any = {};
   for (let i = 0; i < 26; i++) {
     maxLetterCount[letters[0][i]] = 5;
@@ -20,18 +21,21 @@ export async function solve(guesses: string[], guessesColors: string[]) {
     for (let j = 0; j < 5; j++) {
       const currLetter = guesses[i][j];
 
-      if (guessesColors[i][j] === 'g') {  // correct guess
+      // correct guess (green)
+      if (guessesColors[i][j] === 'g') {
         letters[j] = currLetter;
         letters[5] += currLetter;
-      } else if (guessesColors[i][j] === 'y') {  // semi-correct guess
+      // semi-correct guess (yellow)
+      } else if (guessesColors[i][j] === 'y') {
         letters[j] = letters[j].replace(currLetter, '');
         letters[5] += currLetter;
-      } else if (guessesColors[i][j] === 'w') {  // wrong guess
-        // a square could be gray while still being in the result word.
+      // wrong guess (gray)
+      } else if (guessesColors[i][j] === 'w') {
+        // a square could be gray while still being in the result word (multiple occurences in the guess)
         // then the max count of that letter is the number of non-gray square of of that letter
         let containsCount = 0;
         for (let k = 0; k < 5; k++) {
-          if (guesses[i][k] === currLetter && guessesColors[i][k] != 'w') {
+          if (guesses[i][k] === currLetter && guessesColors[i][k] !== 'w') {
             containsCount += 1;
           }
         }
