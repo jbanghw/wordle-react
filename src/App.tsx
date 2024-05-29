@@ -44,7 +44,7 @@ function App() {
         {
           Array.from({length: 4 - guesses.length}, (_, idx) => <EmptyRow key={idx}/>)
         }
-        <button onClick={async () => {setGuesses([]); setColors([]);}}>
+        <button onClick={async () => {setGuesses([]); setColors([]); setCurrentGuess('');}}>
           Clear
         </button>
         <button onClick={async () => {await handleSolve();}}>
