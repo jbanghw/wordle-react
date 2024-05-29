@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import WordleRow from "../WordleRow";
 
-const WordleGrid = ({ guesses, colors, colorChange, rowRemove }) => {
+const WordleGrid = ({ guesses, guessChange, colors, colorChange, resetSolution }) => {
   return (
     <div>
       {guesses.map((guess, idx) => {
-        return <WordleRow key={idx} row={idx} guess={guess} colors={colors} colorChange={colorChange} rowRemove={rowRemove} />
+        return <WordleRow key={idx} row={idx} guesses={guesses} colors={colors} colorChange={colorChange} guessChange={guessChange} resetSolution={resetSolution} />
       })}
     </div>
   )

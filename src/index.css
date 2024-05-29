@@ -16,6 +16,7 @@ code {
   text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .wordleBox {
@@ -29,4 +30,45 @@ code {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 2.5em;
+}
+
+.wordleRow > div {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 4px;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+.removeButton {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.emptyButton {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #bbb;
+  margin: 4px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.5em;
+  background-color: transparent;
+}
+
+.emptyRemoveButton {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 4px;
+  border: none;
+  background-color: transparent;
 }
