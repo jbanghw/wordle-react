@@ -37,17 +37,11 @@ code {
 }
 
 .board {
-  width: 20rem;
-  max-width: 20rem;
-  aspect-ratio: 1 / 1;
-}
-
-.wordleGrid {
-  width: 100%;
+  width: clamp(10rem, 25rem, 30rem);
 }
 
 .wordleRow {
-  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -109,7 +103,7 @@ code {
 }
 
 .buttons {
-  width: 100%;
+  width: clamp(10rem, 25rem, 30rem);
   max-width: 400px;
   padding: 15px;
   gap: 10px;
