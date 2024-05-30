@@ -1,21 +1,36 @@
 import WordleBox from "../WordleBox"
 
-export default function WordleRow({ guesses, row, colors, colorChange, guessChange, resetSolution }) {
+export default function WordleRow({ row, guesses, setGuesses, colors, setColors, setSolution }) {
   const handleRemove = (e) => {
     let updatedGuesses = [...guesses];
+    let updatedColors = [...colors];
     updatedGuesses.splice(row, 1);
-    guessChange(updatedGuesses);
-    resetSolution([]);
+    updatedColors.splice(row, 1);
+    setGuesses(updatedGuesses);
+    setColors(updatedColors);
+    setSolution([]);
   }
 
   return (
     <div className="wordleRow">
-      <WordleBox letter={guesses[row][0]} row={row} col={0} colors={colors} colorChange={colorChange} resetSolution={resetSolution} />
-      <WordleBox letter={guesses[row][1]} row={row} col={1} colors={colors} colorChange={colorChange} resetSolution={resetSolution} />
-      <WordleBox letter={guesses[row][2]} row={row} col={2} colors={colors} colorChange={colorChange} resetSolution={resetSolution} />
-      <WordleBox letter={guesses[row][3]} row={row} col={3} colors={colors} colorChange={colorChange} resetSolution={resetSolution} />
-      <WordleBox letter={guesses[row][4]} row={row} col={4} colors={colors} colorChange={colorChange} resetSolution={resetSolution} />
-      <div className="divider" />
+      {
+        Array.from({length: guesses[row].length}, (_, idx) => 
+          <WordleBox
+            key={idx}
+            letter={guesses[row][idx]}
+            row={row}
+            col={idx}
+            colors={colors}
+            setColors={setColors}
+            setSolution={setSolution}
+          />
+        )
+      }
+      {
+        Array.from({length: 5 - guesses[row].length}, (_, idx) =>
+          <button key={idx} className="emptyButton" />
+        )
+      }
       <button className="removeButton" onClick={handleRemove} />
     </div>
   )

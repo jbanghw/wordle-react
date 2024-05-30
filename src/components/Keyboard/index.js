@@ -3,58 +3,63 @@ import { Backspace } from "../Backspace/backspace";
 const KEYBOARD = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
   ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-  ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', "BACKSPACE"],
+  ['Z', 'X', 'C', 'V', 'B', 'N', 'M', "BACKSPACE"],
 ];
 
 
-export default function Keyboard({currentGuess, setCurrentGuess, guesses, setGuesses, colors, setColors, resetSolution}) {
+export default function Keyboard({guesses, setGuesses, colors, setColors, setSolution}) {
 
   function Key({ letter }) {
     function handlePress() {
-      if (letter === 'ENTER') {
-        if (currentGuess.length < 5) {
-          console.log('enter a full word')
-          return
-        }
-        const formatted = currentGuess.toLowerCase();
-        let updatedGuesses = [...guesses];
-        updatedGuesses.push(formatted);
-        setGuesses(updatedGuesses);
-        let updatedColors = [...colors];
-        updatedColors.push('wwwww');
-        setColors(updatedColors);
-        resetSolution([]);
-        setCurrentGuess('');
-      } else if (letter === 'BACKSPACE') {
-        if (currentGuess.length === 0 && guesses.length > 0) {
+      let count = 0;
+      for (let i = 0; i < guesses.length; i++) {
+        count += guesses[i].length;
+      }
+      
+      if (letter === 'Backspace') {
+        if (count > 0) {
           let updatedGuesses = [...guesses];
           let updatedColors = [...colors];
-          updatedColors.pop();
-          setColors(updatedColors);
-          const newGuess = updatedGuesses.pop();
+          updatedGuesses[updatedGuesses.length - 1] = updatedGuesses[updatedGuesses.length - 1].substring(0, updatedGuesses[updatedGuesses.length - 1].length - 1);
+          updatedColors[updatedColors.length - 1] = updatedColors[updatedColors.length - 1].substring(0, updatedColors[updatedColors.length - 1].length - 1);
+          if (updatedGuesses[updatedGuesses.length - 1].length === 0) {
+            updatedGuesses.pop();
+            updatedColors.pop();
+          }
           setGuesses(updatedGuesses);
-          setCurrentGuess(newGuess.slice(0, 4));
-        } else {
-          setCurrentGuess(prev => prev.slice(0, -1))
-          resetSolution([]);
+          setColors(updatedColors);
+          setSolution([]);
         }
       } else if (/^[A-Za-z]$/.test(letter)) {
-        if (currentGuess.length < 5) {
-          setCurrentGuess(prev => prev + letter)
-          resetSolution([]);
+        if (count < 25) {
+          letter = letter.toLowerCase();
+          let updatedColors = [...colors];
+          let updatedGuesses = [...guesses];
+          if (count % 5 === 0) {  // add new guess
+            updatedColors.push('w');
+            updatedGuesses.push(letter);
+          } else {  // add letter to existing last guess
+            updatedColors[updatedColors.length - 1] += 'w';
+            updatedGuesses[updatedGuesses.length - 1] += letter;
+          }
+          setGuesses(updatedGuesses);
+          setColors(updatedColors);
+          setSolution([]);
         }
       }
     }
 
     return(
-      <button onClick={handlePress}>
+      <button className="key" onClick={handlePress}>
         {letter === 'BACKSPACE' ? <Backspace height={24} width={24} /> : letter}
       </button>
     )
   }
 
   return (
-    <div style={{
+    <div
+      className="keyboard"
+      style={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -63,10 +68,7 @@ export default function Keyboard({currentGuess, setCurrentGuess, guesses, setGue
       padding: '2px',
     }}>
       {KEYBOARD.map((row, rowIndex) => (
-        <div key={rowIndex} style={{
-          display: 'flex',
-          gap: '2px'
-        }}>
+        <div className="keyRow" key={rowIndex}>
           {row.map(letter => (
             <Key key={letter} letter={letter} />
           ))}

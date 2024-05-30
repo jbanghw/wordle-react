@@ -1,4 +1,5 @@
-export default function WordleBox({ letter, row, col, colors, colorChange, resetSolution }) {
+export default function WordleBox({ letter, row, col, colors, setColors, setSolution }) {
+
   let backgroundColor = "#787c7f";
   if (colors[row][col] === "y") {
     backgroundColor = "#c8b653";
@@ -15,8 +16,8 @@ export default function WordleBox({ letter, row, col, colors, colorChange, reset
     } else if (colors[row][col] === 'w') {
       updatedColors[row] = colors[row].substring(0, col) + 'y' + colors[row].substring(col + 1);
     }
-    colorChange(updatedColors);
-    resetSolution([]);
+    setColors(updatedColors);
+    setSolution([]);
   }
 
   return (

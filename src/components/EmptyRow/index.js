@@ -6,7 +6,6 @@ export default function EmptyRow() {
       <button className="emptyButton" />
       <button className="emptyButton" />
       <button className="emptyButton" />
-      <div className="divider" />
       <button className="emptyRemoveButton" />
     </div>
   )

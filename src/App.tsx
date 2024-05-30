@@ -3,14 +3,12 @@ import { useState } from 'react';
 import { solve } from './solver';
 import WordleGrid from './components/WordleGrid';
 import EmptyRow from './components/EmptyRow';
-import CurrentGuess from './components/CurrentGuess';
 import Keyboard from './components/Keyboard';
 
 function App() {
   const [guesses, setGuesses] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [solution, setSolution] = useState<string[]>([]);
-  const [currentGuess, setCurrentGuess] = useState('');
 
   async function handleSolve() {
     await solve(guesses, colors)
@@ -33,40 +31,35 @@ function App() {
         <div className='board'>
           <WordleGrid
             guesses={guesses}
+            setGuesses={setGuesses}
             colors={colors}
-            colorChange={setColors}
-            guessChange={setGuesses}
-            resetSolution={setSolution}
+            setColors={setColors}
+            setSolution={setSolution}
           />
-          { guesses.length < 5 && 
-            <CurrentGuess 
-              currentGuess={currentGuess}
-              setCurrentGuess={setCurrentGuess}
-              guesses={guesses}
-              setGuesses={setGuesses}
-              colors={colors}
-              setColors={setColors}
-              resetSolution={setSolution}
-            />
-          }
-          {
-            Array.from({length: 4 - guesses.length}, (_, idx) => <EmptyRow key={idx}/>)
-          }
+          {Array.from({length: 5 - guesses.length}, (_, idx) => <EmptyRow key={idx}/>)}
         </div>
         <div style={{ paddingBottom: '15px'}}>
-          <button onClick={async () => {setGuesses([]); setColors([]); setCurrentGuess(''); setSolution([]);}}>
+          <button onClick={async () => {
+            setGuesses([]);
+            setColors([]);
+            setSolution([]);
+          }}>
             Clear
           </button>
-          <button onClick={async () => {await handleSolve();}}>
-            Solve
-          </button>
+          {
+            guesses.length > 0 && guesses[guesses.length - 1].length === 5
+            ?
+              <button onClick={async () => {await handleSolve();}}>
+                Solve
+              </button>
+            :
+              "NOPE"
+          }
           <Keyboard
-            currentGuess={currentGuess}
-            setCurrentGuess={setCurrentGuess}
             guesses={guesses}
             setGuesses={setGuesses}
             colors={colors} setColors={setColors}
-            resetSolution={setSolution}
+            setSolution={setSolution}
           />
         </div>
       </div>
