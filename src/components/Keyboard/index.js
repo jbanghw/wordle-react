@@ -1,7 +1,9 @@
+import { Backspace } from "../Backspace/backspace";
+
 const KEYBOARD = [
-  ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-  ['Enter', 'z', 'x', 'c', 'v', 'b', 'n', 'm', "Backspace"],
+  ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+  ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+  ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', "BACKSPACE"],
 ];
 
 
@@ -9,7 +11,7 @@ export default function Keyboard({currentGuess, setCurrentGuess, guesses, setGue
 
   function Key({ letter }) {
     function handlePress() {
-      if (letter === 'Enter') {
+      if (letter === 'ENTER') {
         if (currentGuess.length < 5) {
           console.log('enter a full word')
           return
@@ -23,7 +25,7 @@ export default function Keyboard({currentGuess, setCurrentGuess, guesses, setGue
         setColors(updatedColors);
         resetSolution([]);
         setCurrentGuess('');
-      } else if (letter === 'Backspace') {
+      } else if (letter === 'BACKSPACE') {
         if (currentGuess.length === 0 && guesses.length > 0) {
           let updatedGuesses = [...guesses];
           let updatedColors = [...colors];
@@ -46,7 +48,7 @@ export default function Keyboard({currentGuess, setCurrentGuess, guesses, setGue
 
     return(
       <button onClick={handlePress}>
-        {letter}
+        {letter === 'BACKSPACE' ? <Backspace height={24} width={24} /> : letter}
       </button>
     )
   }

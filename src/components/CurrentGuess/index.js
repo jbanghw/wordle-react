@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 export default function CurrentGuess({currentGuess, setCurrentGuess, guesses, setGuesses, colors, setColors, resetSolution}) {
-  // const [guess, setGuess] = useState('');
-
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup);
 
@@ -52,6 +50,7 @@ export default function CurrentGuess({currentGuess, setCurrentGuess, guesses, se
       <button className="emptyButton">{currentGuess.length >= 2 && currentGuess[2]}</button>
       <button className="emptyButton">{currentGuess.length >= 3 && currentGuess[3]}</button>
       <button className="emptyButton">{currentGuess.length >= 4 && currentGuess[4]}</button>
+      <div className="divider" />
       <button className="emptyRemoveButton" />
     </div>
   )

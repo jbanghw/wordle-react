@@ -1,10 +1,18 @@
+html {
+  height: 100%;
+}
+
 body {
+  padding: 0;
   margin: 0;
+  width: 100%;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #121212;
 }
 
 code {
@@ -12,63 +20,98 @@ code {
     monospace;
 }
 
-.wordleRow {
-  text-align: center;
+.mainApp {
+  width: 100%;
+  height: 200vh;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.mainApp > div {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.board {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+}
+
+.wordleGrid {
+  width: 100%;
+}
+
+.wordleRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .wordleBox {
   display: block;
-  width: 60px;
-  height: 60px;
-  border: 1px solid #bbb;
-  margin: 4px;
-  text-align: center;
-  line-height: 60px;
+  background-color: #121212;
+  color: #fff;
+  width: 18%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  margin: 2px;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 2.5em;
-}
-
-.wordleRow > div {
-  display: block;
-  width: 60px;
-  height: 60px;
-  margin: 4px;
-  text-align: center;
-  font-size: 2.5em;
-}
-
-.removeButton {
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
 }
 
 .emptyButton {
   display: block;
-  width: 60px;
-  height: 60px;
-  border: 1px solid #bbb;
-  margin: 4px;
-  text-align: center;
-  line-height: 60px;
+  background-color: #121212;
+  color: #fff;
+  width: 18%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid #fff;
+  margin: 2px;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 2.5em;
+}
+
+.divider {
+  margin-right: 5%;
+}
+
+.removeButton {
+  background-image: url(../public/trash.png);
   background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin: 2px;
+  display: block;
+  width: 10%;
+  aspect-ratio: 1 / 1;
 }
 
 .emptyRemoveButton {
-  display: block;
-  width: 60px;
-  height: 60px;
-  margin: 4px;
-  border: none;
   background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin: 2px;
+  display: block;
+  width: 10%;
+  aspect-ratio: 1 / 1;
 }

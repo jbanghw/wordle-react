@@ -15,9 +15,8 @@ export default function WordleRow({ guesses, row, colors, colorChange, guessChan
       <WordleBox letter={guesses[row][2]} row={row} col={2} colors={colors} colorChange={colorChange} resetSolution={resetSolution} />
       <WordleBox letter={guesses[row][3]} row={row} col={3} colors={colors} colorChange={colorChange} resetSolution={resetSolution} />
       <WordleBox letter={guesses[row][4]} row={row} col={4} colors={colors} colorChange={colorChange} resetSolution={resetSolution} />
-      <div>
-        <button className="removeButton" onClick={handleRemove}>remove</button>
-      </div>
+      <div className="divider" />
+      <button className="removeButton" onClick={handleRemove} />
     </div>
   )
 }

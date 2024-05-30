@@ -1,9 +1,9 @@
 export default function WordleBox({ letter, row, col, colors, colorChange, resetSolution }) {
-  let backgroundColor = "gray";
+  let backgroundColor = "#787c7f";
   if (colors[row][col] === "y") {
-    backgroundColor = "yellow";
+    backgroundColor = "#c8b653";
   } else if (colors[row][col] === "g") {
-    backgroundColor = "green";
+    backgroundColor = "#6ca965";
   }
 
   const handleClick = (e) => {
@@ -20,7 +20,7 @@ export default function WordleBox({ letter, row, col, colors, colorChange, reset
   }
 
   return (
-    <button className="wordleBox" onClick={handleClick} style={{background: backgroundColor}}>
+    <button className="wordleBox" onClick={handleClick} style={{backgroundColor: backgroundColor}}>
       {letter}
     </button>
   )

@@ -27,11 +27,18 @@ function App() {
   }
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
-      <div style={{display: 'block'}}>
-        <WordleGrid guesses={guesses} colors={colors} colorChange={setColors} guessChange={setGuesses} resetSolution={setSolution} />
-        {
-          guesses.length < 5 && 
+    <div className="mainApp">
+      <div>
+        <h1 style={{color: 'white'}}>Wordle Helper</h1>
+        <div className='board'>
+          <WordleGrid
+            guesses={guesses}
+            colors={colors}
+            colorChange={setColors}
+            guessChange={setGuesses}
+            resetSolution={setSolution}
+          />
+          { guesses.length < 5 && 
             <CurrentGuess 
               currentGuess={currentGuess}
               setCurrentGuess={setCurrentGuess}
@@ -39,27 +46,33 @@ function App() {
               setGuesses={setGuesses}
               colors={colors}
               setColors={setColors}
-              resetSolution={setSolution} />
-        }
-        {
-          Array.from({length: 4 - guesses.length}, (_, idx) => <EmptyRow key={idx}/>)
-        }
-        <button onClick={async () => {setGuesses([]); setColors([]); setCurrentGuess('');}}>
-          Clear
-        </button>
-        <button onClick={async () => {await handleSolve();}}>
-          Solve
-        </button>
-        <Keyboard
-          currentGuess={currentGuess}
-          setCurrentGuess={setCurrentGuess}
-          guesses={guesses}
-          setGuesses={setGuesses}
-          colors={colors} setColors={setColors}
-          resetSolution={setSolution}
-        />
-        <h1>
-          {solution.join(', ')}
+              resetSolution={setSolution}
+            />
+          }
+          {
+            Array.from({length: 4 - guesses.length}, (_, idx) => <EmptyRow key={idx}/>)
+          }
+        </div>
+        <div style={{ paddingBottom: '15px'}}>
+          <button onClick={async () => {setGuesses([]); setColors([]); setCurrentGuess(''); setSolution([]);}}>
+            Clear
+          </button>
+          <button onClick={async () => {await handleSolve();}}>
+            Solve
+          </button>
+          <Keyboard
+            currentGuess={currentGuess}
+            setCurrentGuess={setCurrentGuess}
+            guesses={guesses}
+            setGuesses={setGuesses}
+            colors={colors} setColors={setColors}
+            resetSolution={setSolution}
+          />
+        </div>
+      </div>
+      <div>
+        <h1 style={{ color: 'white' }}>
+          {solution.join('\n')}
         </h1>
       </div>
     </div>
