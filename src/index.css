@@ -37,8 +37,8 @@ code {
 }
 
 .board {
-  width: 100%;
-  max-width: 400px;
+  width: 20rem;
+  max-width: 20rem;
   aspect-ratio: 1 / 1;
 }
 
