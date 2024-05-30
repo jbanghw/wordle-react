@@ -108,34 +108,68 @@ code {
   aspect-ratio: 1 / 1;
 }
 
-.keyboard {
+.buttons {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  gap: 10px;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  align-items: center;
-  justify-content: center;
 }
 
-.keyRow {
-  display: 'flex';
-  flex-wrap: nowrap;
+.keyboard {
+  display: flex;
   width: 100%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: '2px';
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+.keyRowFirst {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.keyRowSecond {
+  display: flex;
+  width: 90%;
+  gap: 0.5rem;
+}
+
+.keyRowThird {
+  display: flex;
+  width: 85%;
+  gap: 0.5rem;
 }
 
 .key {
-  display: inline-block;
   background-color: #787c7f;
   color: #fff;
+  display: flex;
+  height: 3.5rem;
+  width: 100%;
+  flex: 1 1;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
   border: none;
-  border-radius: 6px;
-  margin: 5px;
-  line-height: 50px;
-  aspect-ratio: 4/5;
-  /* width: 10%; */
-  /* height: 50px; */
-  text-transform: uppercase;
-  font-weight: bold;
+}
+
+.backspace {
+  background-color: #787c7f;
+  color: #fff;
+  display: flex;
+  height: 3.5rem;
+  width: 100%;
+  flex: 1.2 1;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: none;
 }

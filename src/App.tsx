@@ -38,23 +38,53 @@ function App() {
           />
           {Array.from({length: 5 - guesses.length}, (_, idx) => <EmptyRow key={idx}/>)}
         </div>
-        <div style={{ paddingBottom: '15px'}}>
-          <button onClick={async () => {
-            setGuesses([]);
-            setColors([]);
-            setSolution([]);
-          }}>
-            Clear
-          </button>
-          {
-            guesses.length > 0 && guesses[guesses.length - 1].length === 5
-            ?
-              <button onClick={async () => {await handleSolve();}}>
-                Solve
-              </button>
-            :
-              "NOPE"
-          }
+        <div className='buttons'>
+          <div style={{ width: '100%' }}>
+            <button style={{
+              width: '40%',
+              margin: '5px',
+              fontWeight: 'bold',
+              height: '30px',
+              backgroundColor: '#787c7f',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px'
+            }} onClick={async () => {
+              setGuesses([]);
+              setColors([]);
+              setSolution([]);
+            }}>
+              Clear
+            </button>
+            {
+              guesses.length > 0 && guesses[guesses.length - 1].length === 5
+              ?
+                <button style={{
+                  width: '40%',
+                  margin: '5px',
+                  fontWeight: 'bold',
+                  height: '30px',
+                  backgroundColor: '#787c7f',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '4px'
+                }} onClick={async () => {await handleSolve();}}>
+                  Solve
+                </button>
+              :
+                <button style={{
+                  width: '40%',
+                  margin: '5px',
+                  fontWeight: 'bold',
+                  height: '30px',
+                  backgroundColor: '#787c7f',
+                  color: '#fff',
+                  opacity: '0.3',
+                  border: 'none',
+                  borderRadius: '4px'
+                }} disabled>Solve</button>
+            }
+          </div>
           <Keyboard
             guesses={guesses}
             setGuesses={setGuesses}

@@ -50,25 +50,16 @@ export default function Keyboard({guesses, setGuesses, colors, setColors, setSol
     }
 
     return(
-      <button className="key" onClick={handlePress}>
-        {letter === 'BACKSPACE' ? <Backspace height={24} width={24} /> : letter}
+      <button className={letter === 'BACKSPACE' ? 'backspace' : 'key'} onClick={handlePress}>
+        {letter === 'BACKSPACE' ? <Backspace height={20} width={20} /> : letter}
       </button>
     )
   }
 
   return (
-    <div
-      className="keyboard"
-      style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '2px',
-      padding: '2px',
-    }}>
+    <div className="keyboard">
       {KEYBOARD.map((row, rowIndex) => (
-        <div className="keyRow" key={rowIndex}>
+        <div className={rowIndex === 0 ? "keyRowFirst" : rowIndex === 1 ? "keyRowSecond" : "keyRowThird"} key={rowIndex}>
           {row.map(letter => (
             <Key key={letter} letter={letter} />
           ))}
