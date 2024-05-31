@@ -1,5 +1,6 @@
-import WordleRow from "../WordleRow";
 import { useEffect } from "react";
+import WordleBox from "../WordleBox";
+import RemoveRow from "../RemoveRow";
 
 const WordleGrid = ({ guesses, setGuesses, colors, setColors, setSolution }) => {
 
@@ -49,16 +50,26 @@ const WordleGrid = ({ guesses, setGuesses, colors, setColors, setSolution }) => 
 
   return (
     <div className="wordleGrid">
-      {Array.from({length: 5}, (_, idx) => 
-        <WordleRow
-          key={idx}
-          row={idx}
-          guesses={guesses}
-          setGuesses={setGuesses}
-          colors={colors}
-          setColors={setColors}
-          setSolution={setSolution}
-        />
+      {Array.from({length: 30}, (_, idx) => 
+        idx % 6 === 5 ?
+          <RemoveRow 
+            key={idx}
+            idx={idx}
+            guesses={guesses}
+            setGuesses={setGuesses}
+            colors={colors}
+            setColors={setColors}
+            setSolution={setSolution}
+          />
+        :
+          <WordleBox
+            key={idx}
+            idx={idx}
+            guesses={guesses}
+            colors={colors}
+            setColors={setColors}
+            setSolution={setSolution}
+          />
       )}
     </div>
   )
