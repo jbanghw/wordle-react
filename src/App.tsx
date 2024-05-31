@@ -22,6 +22,9 @@ function App() {
         setSolution(json);
       }
     })
+    .then(_ => {
+      document.getElementById('bottomHalf')?.scrollIntoView({behavior: 'smooth'});
+    })
   }
 
   return (
@@ -92,7 +95,7 @@ function App() {
         typeof(solution) === 'string' ?
           <></>
         :
-          <div className='bottomHalf'>
+          <div className='bottomHalf' id='bottomHalf'>
             <Solution solution={solution} />
           </div>
       }
