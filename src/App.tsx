@@ -28,16 +28,13 @@ function App() {
     <div className="mainApp">
       <div>
         <h1 style={{color: 'white'}}>Wordle Helper</h1>
-        <div className='board'>
-          <WordleGrid
-            guesses={guesses}
-            setGuesses={setGuesses}
-            colors={colors}
-            setColors={setColors}
-            setSolution={setSolution}
-          />
-          {Array.from({length: 5 - guesses.length}, (_, idx) => <EmptyRow key={idx}/>)}
-        </div>
+        <WordleGrid
+          guesses={guesses}
+          setGuesses={setGuesses}
+          colors={colors}
+          setColors={setColors}
+          setSolution={setSolution}
+        />
         <div className='buttons'>
           <div style={{ width: '100%' }}>
             <button style={{

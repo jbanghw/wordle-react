@@ -16,7 +16,7 @@ export default function Keyboard({guesses, setGuesses, colors, setColors, setSol
         count += guesses[i].length;
       }
       
-      if (letter === 'Backspace') {
+      if (letter === 'BACKSPACE') {
         if (count > 0) {
           let updatedGuesses = [...guesses];
           let updatedColors = [...colors];

@@ -49,19 +49,17 @@ const WordleGrid = ({ guesses, setGuesses, colors, setColors, setSolution }) => 
 
   return (
     <div className="wordleGrid">
-      {guesses.map((guess, idx) => {
-        return (
-          <WordleRow
-            key={idx}
-            row={idx}
-            guesses={guesses}
-            setGuesses={setGuesses}
-            colors={colors}
-            setColors={setColors}
-            setSolution={setSolution}
-          />
-        )
-      })}
+      {Array.from({length: 5}, (_, idx) => 
+        <WordleRow
+          key={idx}
+          row={idx}
+          guesses={guesses}
+          setGuesses={setGuesses}
+          colors={colors}
+          setColors={setColors}
+          setSolution={setSolution}
+        />
+      )}
     </div>
   )
 }
