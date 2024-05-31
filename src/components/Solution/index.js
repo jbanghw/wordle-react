@@ -5,7 +5,11 @@ export default function Solution({ solution }) {
         <h2>Solutions</h2>
         <div className="solution">
           {solution.map((soln, _) => (
-            <h3 key={soln}>{soln}</h3>
+            <h3 key={soln} style= {{
+              display: 'flex',
+              alignContent: 'center',
+              flex: '1 1 22%',
+            }}>{soln}</h3>
           ))}
         </div>
       </>
