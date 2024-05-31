@@ -8,7 +8,7 @@ export default function RemoveRow({ idx, guesses, setGuesses, colors, setColors,
     updatedColors.splice(row, 1);
     setGuesses(updatedGuesses);
     setColors(updatedColors);
-    setSolution([]);
+    setSolution('');
   };
 
   if (row < guesses.length) {

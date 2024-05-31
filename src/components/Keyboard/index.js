@@ -28,7 +28,7 @@ export default function Keyboard({guesses, setGuesses, colors, setColors, setSol
           }
           setGuesses(updatedGuesses);
           setColors(updatedColors);
-          setSolution([]);
+          setSolution('');
         }
       } else if (/^[A-Za-z]$/.test(letter)) {
         if (count < 25) {
@@ -44,7 +44,7 @@ export default function Keyboard({guesses, setGuesses, colors, setColors, setSol
           }
           setGuesses(updatedGuesses);
           setColors(updatedColors);
-          setSolution([]);
+          setSolution('');
         }
       }
     }
@@ -64,8 +64,7 @@ export default function Keyboard({guesses, setGuesses, colors, setColors, setSol
             <Key key={letter} letter={letter} />
           ))}
         </div>
-      ))
-      }
+      ))}
     </div>
   )
 }

@@ -29,7 +29,7 @@ export default function WordleBox({ idx, guesses, colors, setColors, setSolution
       updatedColors[row] = colors[row].substring(0, col) + 'y' + colors[row].substring(col + 1);
     }
     setColors(updatedColors);
-    setSolution([]);
+    setSolution('');
   }
 
   if (guessIdx < count) {

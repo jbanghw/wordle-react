@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { solve } from './solver';
 import WordleGrid from './components/WordleGrid';
 import Keyboard from './components/Keyboard';
+import Solution from './components/Solution';
 
 function App() {
   const [guesses, setGuesses] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
-  const [solution, setSolution] = useState<string[]>([]);
+  const [solution, setSolution] = useState<string[]|string>('');
 
   async function handleSolve() {
     await solve(guesses, colors)
@@ -16,7 +17,7 @@ function App() {
     })
     .then(json => {
       if (json.length < 1) {
-        setSolution(['No Solution']);
+        setSolution([]);
       } else {
         setSolution(json);
       }
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <div className="mainApp">
-      <div>
+      <div className='topHalf'>
         <h1 style={{color: 'white'}}>Wordle Helper</h1>
         <WordleGrid
           guesses={guesses}
@@ -47,7 +48,7 @@ function App() {
           }} onClick={async () => {
             setGuesses([]);
             setColors([]);
-            setSolution([]);
+            setSolution('');
           }}>
             Clear
           </button>
@@ -87,11 +88,14 @@ function App() {
           setSolution={setSolution}
         />
       </div>
-      <div>
-        <h1 style={{ color: 'white' }}>
-          {solution.join('\n')}
-        </h1>
-      </div>
+      {
+        typeof(solution) === 'string' ?
+          <></>
+        :
+          <div className='bottomHalf'>
+            <Solution solution={solution} />
+          </div>
+      }
     </div>
   )
 }

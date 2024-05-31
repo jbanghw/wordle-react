@@ -27,7 +27,7 @@ const WordleGrid = ({ guesses, setGuesses, colors, setColors, setSolution }) => 
         }
         setGuesses(updatedGuesses);
         setColors(updatedColors);
-        setSolution([]);
+        setSolution('');
       }
     } else if (/^[A-Za-z]$/.test(key)) {
       if (count < 25) {
@@ -43,7 +43,7 @@ const WordleGrid = ({ guesses, setGuesses, colors, setColors, setSolution }) => 
         }
         setGuesses(updatedGuesses);
         setColors(updatedColors);
-        setSolution([]);
+        setSolution('');
       }
     }
   }
