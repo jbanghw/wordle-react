@@ -1,6 +1,6 @@
 # wordle helper
 
-[link to site](https://jbanghw.com/wordle/){:target="_blank"}
+[link to site](https://jbanghw.com/wordle/)
 
 ## how to use
 
