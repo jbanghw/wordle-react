@@ -1,6 +1,6 @@
 # wordle helper
 
-[link to site](https://jbanghw.com/wordle/)
+[link to site](https://wordle-ecru-omega.vercel.app)
 
 ## how to use
 
